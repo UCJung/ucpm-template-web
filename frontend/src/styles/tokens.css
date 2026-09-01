@@ -1,0 +1,31 @@
+/* ═══════════════════════════════════════════════════════
+   디자인 토큰 — 색·간격·메트릭의 단일 정본(:root CSS 변수).
+   tailwind.config.ts가 이 변수들을 유틸리티로 매핑한다.
+   새 색·간격을 지어내지 말고 여기에 토큰으로 추가한 뒤 참조할 것.
+═══════════════════════════════════════════════════════ */
+:root {
+  /* Brand */
+  --orange:#FF6943; --orange-d:#F2542B; --orange-bg:#FFF1EC; --orange-bd:#FFD2C4;
+  /* Dark shell */
+  --dark:#222222; --dark-2:#2C2C2C; --dark-3:#383838;
+  --dark-line:rgba(255,255,255,.10);
+  /* Navy (accent) */
+  --navy:#2B3A55; --navy-d:#1F2B40; --navy-bg:#E9EEF6;
+  /* Content surface */
+  --bg:#F5F6F6; --card:#FFFFFF; --card-bd:#E3E4E6;
+  --row-hover:#F0F4FA; --row-sel:#E6EDF8;
+  /* Text */
+  --t1:#1E1F1F; --t2:#444549; --t3:#76787B; --t4:#A0A2A5;
+  /* Status */
+  --ok:#1F9D57; --ok-bg:#E5F6ED;
+  --warn:#E08600; --warn-bg:#FDF3E0;
+  --danger:#E0392B; --danger-bg:#FCEBE9;
+  --info:#2563EB; --info-bg:#E8F0FE;
+  /* Metrics */
+  --gnb-h:56px; --lnb-w:250px; --radius:10px;
+  --shadow-card:0 1px 2px rgba(0,0,0,.04);
+  /* Shell */
+  --shell-grad-a:#2A1B0D; --shell-grad-b:#222222; --shell-side:#222222;
+  /* Density */
+  --content-pad:21px 24px;
+}

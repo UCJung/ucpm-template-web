@@ -1,0 +1,20 @@
+# local 프로파일 — H2 인메모리. docker 없이 즉시 실행되며 재시작 시 데이터가 초기화된다.
+# 스키마는 JPA(ddl-auto=create-drop)가 엔티티로부터 생성한다. Flyway는 비활성.
+spring:
+  datasource:
+    url: jdbc:h2:mem:webapp;DB_CLOSE_DELAY=-1;MODE=PostgreSQL
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  flyway:
+    enabled: false

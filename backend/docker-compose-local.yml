@@ -1,0 +1,17 @@
+# postgres 프로파일 실행용 로컬 인프라. local(H2) 프로파일은 이 파일 없이 실행된다.
+# 사용: docker compose -f docker-compose-local.yml up -d 후 SPRING_PROFILES_ACTIVE=postgres 로 부팅.
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: webapp-postgres
+    environment:
+      POSTGRES_DB: webapp
+      POSTGRES_USER: webapp
+      POSTGRES_PASSWORD: webapp
+    ports:
+      - "5432:5432"
+    volumes:
+      - webapp-pgdata:/var/lib/postgresql/data
+
+volumes:
+  webapp-pgdata:

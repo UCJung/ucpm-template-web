@@ -1,0 +1,32 @@
+@import './styles/tokens.css';
+@import './styles/components.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: 'Pretendard Variable', Pretendard, -apple-system, 'Segoe UI', sans-serif;
+  font-size: 14px;
+  letter-spacing: -0.2px;
+  -webkit-font-smoothing: antialiased;
+  color: var(--t1);
+  background: var(--bg);
+  height: 100vh;
+  overflow: hidden;
+}
+
+img {
+  display: block;
+}
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+input,
+select,
+textarea {
+  font-family: inherit;
+}

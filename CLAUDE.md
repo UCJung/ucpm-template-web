@@ -14,6 +14,11 @@
 
 | 주제 | 정본 경로 |
 |---|---|
+| 요구사항 분석 가이드 | `docs/[요구분석]_요구사항분석_가이드.md` |
+| 요구사항 정의서 | `docs/[요구분석]_요구사항정의서.md` |
+| 화면 프로토타입 가이드 | `docs/[설계]_화면프로토타입_가이드.md` |
+| IA(정보구조) 가이드 | `docs/[설계]_IA_가이드.md` |
+| IA(정보구조) | `docs/[설계]_IA.md` |
 | 백엔드 빌드·실행·구조·엔드포인트 | `backend/README.md` |
 | 백엔드 API 명세(요청·응답·에러) | `docs/[SPEC]_BACKEND_API.md` |
 | 백엔드 테이블 명세(ERD·컬럼) | `docs/[SPEC]_BACKEND_TABLE.md` |
@@ -24,6 +29,21 @@
 | 배포 절차 | `docs/[GUIDE]_DEPLOYMENT.md` |
 | DB 스키마 마이그레이션(Flyway) | `docs/[GUIDE]_BACKEND_MIGRATION.md` |
 | 가이드 작성 방식(문체·구조) | `docs/[GUIDE]_AUTHORING_STYLE.md` |
+
+## Claude Design 연계 (프로토타입)
+
+`mcp__claude-design__*` 도구로 프로토타입에 접근할 때 아래 `project_id`(키)를 사용한다.
+파일 조회·읽기는 `list_files` / `read_file` 에 이 키를 넘긴다.
+
+| 프로젝트 | project_id (MCP 키) | URL |
+|---|---|---|
+| <프로젝트명> | `<project_id>` | <프로토타입 URL> |
+
+**프로토타입 파일** (project_id `<project_id>` 기준)
+
+| 파일명 | 용도 |
+|---|---|
+| `<파일명>` | <용도 설명> |
 
 ## OperationGuide
 docs/UCPM_PIPELINE_GUIDE.md

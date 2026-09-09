@@ -1,6 +1,6 @@
 # UCPM-QUICK-GUIDE — 설치 및 사용 지시문 모음
 
-- **설명**: UCPM-PIPELINE 환경 구성(설치·설정) 명령과 단계별 사용 지시문만 추린 실무용 빠른 가이드. 개념 설명은 발표자료(`.idea\[발표자료]_AX전환-Development-PIPELINE.md`) 참조.
+- **설명**: UCPM-PIPELINE 환경 구성(설치·설정) 명령과 단계별 사용 지시문만 추린 실무용 빠른 가이드.
 - **예시 기준**: 프로젝트명 `ucpm-case-study`, 작업 경로 `c:\work\ucpm-case-study`. 모든 명령은 **Windows PowerShell**에서 실행. `ucpm-case-study`·`CASESTUDY`는 실제 프로젝트명·키로 교체.
 - **문서참조 경로 표기**: 이 가이드가 참조하는 규약·양식 문서 경로는 이 저장소 루트 기준 상대경로 `docs/…`로 표기(클론 후에는 실제 프로젝트 폴더의 동일 경로).
 
@@ -58,7 +58,7 @@ gh repo create ucpm-case-study --private --source=. --remote=origin --push
 ```
 
 - 확인: `c:\work\ucpm-case-study` 폴더 생성 + GitHub 저장소 생성·푸시 완료.
-- 템플릿 기본 문서 목록: 아래 [5. 참조 문서](#5-참조-문서) 참조.
+- 템플릿 기본 문서 목록: 아래 [3. 참조 문서](#3-참조-문서) 참조.
 
 ### 1-3. ucpm-agent 설치 + Claude Code 설정
 
@@ -286,5 +286,3 @@ REQ를 입력으로 ucpm-agent가 명세화 → 설계 → 구현·검증·커�
 | `docs/[설계]_IA_가이드.md` | IA 설계 절차·역할·작성 방식 |
 | `docs/[설계]_IA.md` | IA 설계서 작성 양식 |
 | `docs/[설계]_화면프로토타입_가이드.md` | 화면 프로토타입 생성·검토·환류 절차 |
-
-- 파이프라인 계약(단계·게이트·Codex·segment/대화형·auto/gated): `ucpm-agent\references\agent-flow.md`

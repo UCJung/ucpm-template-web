@@ -19,6 +19,9 @@
 | 화면 프로토타입 가이드 | `docs/[설계]_화면프로토타입_가이드.md` |
 | IA(정보구조) 가이드 | `docs/[설계]_IA_가이드.md` |
 | IA(정보구조) | `docs/[설계]_IA.md` |
+| 기능정의서 작성 지침 | `docs/[설계]기능정의서_작성지침.md` |
+| 기능정의서 템플릿 | `docs/[설계]기능정의서_템플릿.md` |
+| 기능정의서(초안) | `docs/[설계]기능정의서_초안_v1.md` |
 | 백엔드 빌드·실행·구조·엔드포인트 | `backend/README.md` |
 | 백엔드 API 명세(요청·응답·에러) | `docs/[SPEC]_BACKEND_API.md` |
 | 백엔드 테이블 명세(ERD·컬럼) | `docs/[SPEC]_BACKEND_TABLE.md` |
@@ -27,6 +30,9 @@
 | UCPM-PIPELINE R&D 운영 절차 | `docs/UCPM_PIPELINE_GUIDE.md` |
 | Git 브랜치·병합·커밋·푸시 | `docs/[GUIDE]_GIT_BRANCHING.md` |
 | 배포 절차 | `docs/[GUIDE]_DEPLOYMENT.md` |
+| 운영 자산 템플릿(구성·치환 규칙) | `operation/README.md` |
+| prod 백업(정책·설치·실행) | `operation/backup/[GUIDE]_PROD_BACKUP.md` |
+| prod 복원(백업 세트 기반) | `operation/backup/[GUIDE]_PROD_RESTORE.md` |
 | DB 스키마 마이그레이션(Flyway) | `docs/[GUIDE]_BACKEND_MIGRATION.md` |
 | 가이드 작성 방식(문체·구조) | `docs/[GUIDE]_AUTHORING_STYLE.md` |
 

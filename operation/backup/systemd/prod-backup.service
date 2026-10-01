@@ -1,0 +1,16 @@
+# prod 백업 systemd service (템플릿)
+#
+# 설치 위치: /etc/systemd/system/<앱키>-prod-backup.service
+# 아래 <...> 값을 프로젝트 값으로 전부 치환한 뒤 설치함.
+
+[Unit]
+Description=<앱 표시명, 예: MyApp> production PostgreSQL and upload-volume backup
+
+[Service]
+Type=oneshot
+User=<배포 계정, 예: pntadmin>
+Group=<배포 계정 그룹, 예: pntadmin>
+UMask=0077
+EnvironmentFile=/etc/<앱키, 예: myapp>/prod-backup.env
+WorkingDirectory=<백업 저장 루트 절대경로, 예: /home/pntadmin/backups/myapp_prod>
+ExecStart=/bin/bash <운영 자산 설치 절대경로, 예: /opt/myapp/operation>/backup/prod-backup.sh --reason scheduled

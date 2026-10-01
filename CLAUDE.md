@@ -27,6 +27,9 @@
 | UCPM-PIPELINE R&D 운영 절차 | `docs/UCPM_PIPELINE_GUIDE.md` |
 | Git 브랜치·병합·커밋·푸시 | `docs/[GUIDE]_GIT_BRANCHING.md` |
 | 배포 절차 | `docs/[GUIDE]_DEPLOYMENT.md` |
+| 운영 자산 템플릿(구성·치환 규칙) | `operation/README.md` |
+| prod 백업(정책·설치·실행) | `operation/backup/[GUIDE]_PROD_BACKUP.md` |
+| prod 복원(백업 세트 기반) | `operation/backup/[GUIDE]_PROD_RESTORE.md` |
 | DB 스키마 마이그레이션(Flyway) | `docs/[GUIDE]_BACKEND_MIGRATION.md` |
 | 가이드 작성 방식(문체·구조) | `docs/[GUIDE]_AUTHORING_STYLE.md` |
 

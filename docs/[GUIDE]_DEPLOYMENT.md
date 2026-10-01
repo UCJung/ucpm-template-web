@@ -4,8 +4,8 @@
 |---|---|
 | 설명 | dev·prod 2환경 배포의 필수 절차와 원칙 정의 |
 | 생성일 | 2026-09-01 |
-| 수정일 | 2026-09-01 |
-| 버전 | 0.1.0 |
+| 수정일 | 2026-10-01 |
+| 버전 | 0.2.0 |
 
 검증은 `dev`에서 수행하고 릴리스는 `main` 기준으로 배포함. 비밀값은 `.env`(gitignore)에서 주입하며 로그·문서에 출력하지 않음. compose 파일·Dockerfile은 프로젝트별로 배치하는 확장 지점임.
 
@@ -20,7 +20,7 @@
 | 3 | dev 배포 | 스택 기동·상태 확인 |
 | 4 | prod 배포 | `main` 릴리스 배포 |
 | 5 | DB 마이그레이션 | 기동 시 스키마 적용 |
-| 6 | 롤백 | 이전 이미지 재기동 |
+| 6 | 롤백 | 이전 이미지 재기동·데이터 복원 |
 | 7 | 필수 금지 | 배포 시 금지 항목 |
 
 ---
@@ -76,7 +76,7 @@ flowchart LR
 1. **dev→main 병합 PR 생성**: `gh pr create --base main --head dev --fill`.
 2. **승인 게이트**: PR 승인·병합을 요청함. 병합 가능 여부는 `gh pr view <PR번호> --json mergeable,mergeStateStatus`로 확인함.
 3. **릴리스 체크아웃**: `git checkout main` → `git pull --ff-only`.
-4. **백업**(prod 라이브 상태): 배포 전 DB 스냅샷을 남김.
+4. **백업**(prod 라이브 상태): 배포 전 서버에서 `<운영 자산 설치 경로, 예: /opt/myapp/operation>/backup/prod-backup.sh --reason pre-deploy`를 실행해 DB·업로드 백업 세트를 생성하고, 성공해야 이후 단계를 진행함. 실패 시 배포를 중단함. 정책·설치는 `operation/backup/[GUIDE]_PROD_BACKUP.md`를 정본으로 함.
 5. **이미지 빌드**(현재 워킹트리 = `main`):
 
 ```bash
@@ -101,7 +101,7 @@ docker compose -f docker-compose-prod.yml --env-file .env.prod up -d
 
 - `postgres` 프로파일 기동 시 Flyway가 미적용 마이그레이션(`db/migration/V{n}__*.sql`)을 자동 적용함(`validate` + 순서 강제).
 - 엔티티 변경은 대응 `V{n}` 마이그레이션을 동반함.
-- 파괴적 변경(컬럼 삭제·타입 변경) 전에는 DB 백업을 선행함.
+- 파괴적 변경(컬럼 삭제·타입 변경) 전에는 서버에서 `<운영 자산 설치 경로>/backup/prod-backup.sh --reason manual`로 백업을 선행함.
 
 ---
 
@@ -109,6 +109,7 @@ docker compose -f docker-compose-prod.yml --env-file .env.prod up -d
 
 - 이전 이미지 태그로 재기동함: `docker compose -f docker-compose-prod.yml --env-file .env.prod up -d`(대상 서비스를 이전 태그로 지정).
 - 볼륨은 유지함(데이터 보존).
+- 이미지 재기동으로 복구되지 않는 데이터 사고는 `operation/backup/[GUIDE]_PROD_RESTORE.md`의 복원 절차를 따름.
 
 ---
 
@@ -116,6 +117,7 @@ docker compose -f docker-compose-prod.yml --env-file .env.prod up -d
 
 - prod 비밀값(DB 비밀번호·JWT 시크릿·API 키)을 로그·메시지·문서에 출력하는 것 → 금지(`.env`에서 읽어 사용).
 - 롤백에서 볼륨 삭제 옵션(`down -v`)을 쓰는 것 → 금지(운영 데이터 유실).
+- prod 백업 성공 확인 없이 image load·기동을 진행하는 것 → 금지(복구 지점 부재).
 
 ---
 
@@ -124,6 +126,8 @@ docker compose -f docker-compose-prod.yml --env-file .env.prod up -d
 - `docs/[GUIDE]_GIT_BRANCHING.md` — `dev`→`main` 릴리스 브랜치 흐름
 - `backend/README.md` · `frontend/README.md` — 로컬 실행·빌드 정본
 - `.gitignore` — `.env.*` 무시 규칙
+- `operation/backup/[GUIDE]_PROD_BACKUP.md` — prod 백업 정책·설치·실행 정본
+- `operation/backup/[GUIDE]_PROD_RESTORE.md` — prod 복원 절차 정본
 - `docs/[GUIDE]_AUTHORING_STYLE.md` — 문서 작성요령
 
 ---
@@ -133,3 +137,4 @@ docker compose -f docker-compose-prod.yml --env-file .env.prod up -d
 | 버전 | 수정일 | 주요 변경사항 |
 |---|---|---|
 | 0.1.0 | 2026-09-01 | 최초 작성 — 배포 필수 절차 중심의 표준 배포 가이드 |
+| 0.2.0 | 2026-10-01 | prod 백업·복원 절차를 `operation/backup/`으로 분리하고 배포 단계에 pre-deploy 백업 게이트 반영 |

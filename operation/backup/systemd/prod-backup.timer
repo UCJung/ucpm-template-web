@@ -1,0 +1,15 @@
+# prod 백업 systemd timer (템플릿)
+#
+# 설치 위치: /etc/systemd/system/<앱키>-prod-backup.timer
+# Unit= 값은 함께 설치하는 service 파일명과 일치시킴.
+
+[Unit]
+Description=Run <앱 표시명, 예: MyApp> production backup daily
+
+[Timer]
+OnCalendar=<백업 실행 일정, 예: *-*-* 03:00:00 Asia/Seoul>
+Persistent=true
+Unit=<앱키, 예: myapp>-prod-backup.service
+
+[Install]
+WantedBy=timers.target
